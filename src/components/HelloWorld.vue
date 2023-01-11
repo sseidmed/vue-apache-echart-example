@@ -1,61 +1,55 @@
 <template>
+  <chart id="spline" :option="option"></chart>
   <button @click="updateSpline">Update</button>
 </template>
 <script setup>
-import { onMounted, ref } from 'vue'
-import * as echarts from 'echarts';
+import { reactive, watch } from 'vue'
+
+import Chart from './Chart.vue'
 
 // Create the echarts instance
-let splineChart
-let splineChartMap
 let series1 = randomNumbers()
 let series2 = randomNumbers()
 let series3 = randomNumbers()
 
-onMounted(() => {
-  const option = ref({
-    xAxis: {
-      type: 'category',
-      boundaryGap: false,
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+const option = reactive({
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      data: series1,
+      type: 'line',
+      areaStyle: {},
+      smooth: true
     },
-    yAxis: {
-      type: 'value'
+    {
+      data: series2,
+      type: 'line',
+      areaStyle: {},
+      smooth: true
     },
-    series: [
-      {
-        data: series1,
-        type: 'line',
-        areaStyle: {},
-        smooth: true
-      },
-      {
-        data: series2,
-        type: 'line',
-        areaStyle: {},
-        smooth: true
-      },
-      {
-        data: series3,
-        type: 'line',
-        areaStyle: {},
-        smooth: true
-      }
-    ]
-  })
-
-  splineChart = document.getElementById('spline')
-  splineChartMap = echarts.init(splineChart)
-  splineChartMap.setOption(option.value)
+    {
+      data: series3,
+      type: 'line',
+      areaStyle: {},
+      smooth: true
+    }
+  ]
 })
+
 function randomNumbers() {
   return Array.from({ length: 7 }, () => Math.floor(Math.random() * 10000))
 }
 function updateSpline() {
   series1 = randomNumbers()
-  series2 = randomNumbers()
-  series3 = randomNumbers()
-  splineChartMap.setOption({
+  option.value = {
+    ...option,
     series: [
       {
         data: series1,
@@ -76,8 +70,13 @@ function updateSpline() {
         smooth: true
       }
     ]
-  })
+  }
 }
+
+watch(option, (newVal) => {
+  console.log('watched!', newVal)
+  // console.log(props.option)
+})
 </script>
 
 <style scoped>
