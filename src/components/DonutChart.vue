@@ -1,6 +1,7 @@
 <template>
-    <div>
+    <div style="margin-top: 50px">
         <chart id="donut" :options="options" :series="series"></chart>
+        <chart id="budget" :options="options" :series="series"></chart>
     </div>
 </template>
 
@@ -9,12 +10,16 @@ import { ref, reactive, watch } from 'vue'
 import Chart from './Chart.vue'
 
 const options = ref({
+    title: {
+        text: 'Remaining Budget',
+        left: 'center'
+    },
     tooltip: {
-        trigger: 'item'
+        trigger: 'item',
     },
     legend: {
-        top: '5%',
-        left: 'center'
+        orient: 'vertical',
+        left: 'left'
     }
 })
 
@@ -24,6 +29,11 @@ const series = ref([
         type: 'pie',
         radius: ['40%', '70%'],
         avoidLabelOverlap: false,
+        colorStops: [{
+            offset: 0, color: '#cc9175'
+        }, {
+            offset: 1, color: '#04fa52'
+        }],
         label: {
             show: false,
             position: 'center'
@@ -35,15 +45,25 @@ const series = ref([
             fontWeight: 'bold'
             }
         },
+        label: {
+            position: 'inner',
+            fontSize: 10
+        },
         labelLine: {
             show: false
         },
         data: [
-            { value: 1048, name: 'Search Engine' },
-            { value: 735, name: 'Direct' },
-            { value: 580, name: 'Email' },
-            { value: 484, name: 'Union Ads' },
-            { value: 300, name: 'Video Ads' }
+
+            { 
+                value: 60000, 
+                name: 'Total Spent', 
+                itemStyle: {color: 'red'} 
+            },
+            { 
+                value: 40000, 
+                name: 'Total Available',
+                itemStyle: {color: 'green'} 
+            },
         ]
     }
 ])
