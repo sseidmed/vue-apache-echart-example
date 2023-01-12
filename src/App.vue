@@ -1,9 +1,14 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import SplineAreaChart from './components/SplineAreaChart.vue'
 </script>
 
 <template>
-  <HelloWorld />
+  <div id="nav">
+    <router-link to="/">Spline Area Chart</router-link> |
+    <router-link to="/apache">Apache EChart</router-link>
+  </div>
+  <router-view/>
+  <SplineAreaChart />
 </template>
 
 <style scoped>
