@@ -8,8 +8,7 @@
 </template>
 <script setup>
 import { onMounted, ref } from 'vue'
-import * as echarts from 'echarts';
-import { isGloballyWhitelisted } from '@vue/shared';
+import * as echarts from 'echarts'
 
 // Create the echarts instance
 
