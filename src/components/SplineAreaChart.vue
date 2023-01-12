@@ -1,9 +1,9 @@
 <template>
-  <chart id="spline" :option="option"></chart>
+  <chart id="spline" :options="options" :series="series"></chart>
   <button @click="updateSpline">Update</button>
 </template>
 <script setup>
-import { reactive, watch } from 'vue'
+import { ref, reactive, watch } from 'vue'
 
 import Chart from './Chart.vue'
 
@@ -12,7 +12,28 @@ let series1 = randomNumbers()
 let series2 = randomNumbers()
 let series3 = randomNumbers()
 
-const option = reactive({
+const series = ref([
+  {
+    data: series1,
+    type: 'line',
+    areaStyle: {},
+    smooth: true
+  },
+  {
+    data: series2,
+    type: 'line',
+    areaStyle: {},
+    smooth: true
+  },
+  {
+    data: series3,
+    type: 'line',
+    areaStyle: {},
+    smooth: true
+  }
+])
+
+const options = ref({
   xAxis: {
     type: 'category',
     boundaryGap: false,
@@ -20,8 +41,15 @@ const option = reactive({
   },
   yAxis: {
     type: 'value'
-  },
-  series: [
+  }
+})
+
+function randomNumbers() {
+  return Array.from({ length: 7 }, () => Math.floor(Math.random() * 10000))
+}
+function updateSpline() {
+  series1 = randomNumbers()
+  series.value = [
     {
       data: series1,
       type: 'line',
@@ -41,42 +69,7 @@ const option = reactive({
       smooth: true
     }
   ]
-})
-
-function randomNumbers() {
-  return Array.from({ length: 7 }, () => Math.floor(Math.random() * 10000))
 }
-function updateSpline() {
-  series1 = randomNumbers()
-  option.value = {
-    ...option,
-    series: [
-      {
-        data: series1,
-        type: 'line',
-        areaStyle: {},
-        smooth: true
-      },
-      {
-        data: series2,
-        type: 'line',
-        areaStyle: {},
-        smooth: true
-      },
-      {
-        data: series3,
-        type: 'line',
-        areaStyle: {},
-        smooth: true
-      }
-    ]
-  }
-}
-
-watch(option, (newVal) => {
-  console.log('watched!', newVal)
-  // console.log(props.option)
-})
 </script>
 
 <style scoped>
