@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div style="margin-top: 50px">
         <chart id="donut" :options="options" :series="series"></chart>
-        <chart id="donut" :options="options" :series="series"></chart>
+        <chart id="budget" :options="options" :series="series"></chart>
     </div>
 </template>
 
@@ -18,8 +18,8 @@ const options = ref({
         trigger: 'item',
     },
     legend: {
-        bottom: '0',
-        left: 'center'
+        orient: 'vertical',
+        left: 'left'
     }
 })
 
@@ -29,6 +29,11 @@ const series = ref([
         type: 'pie',
         radius: ['40%', '70%'],
         avoidLabelOverlap: false,
+        colorStops: [{
+            offset: 0, color: '#cc9175'
+        }, {
+            offset: 1, color: '#04fa52'
+        }],
         label: {
             show: false,
             position: 'center'
@@ -48,11 +53,17 @@ const series = ref([
             show: false
         },
         data: [
-            { value: 1048, name: 'Search Engine' },
-            { value: 735, name: 'Direct' },
-            { value: 580, name: 'Email' },
-            { value: 484, name: 'Union Ads' },
-            { value: 300, name: 'Video Ads' }
+
+            { 
+                value: 60000, 
+                name: 'Total Spent', 
+                itemStyle: {color: 'red'} 
+            },
+            { 
+                value: 40000, 
+                name: 'Total Available',
+                itemStyle: {color: 'green'} 
+            },
         ]
     }
 ])
