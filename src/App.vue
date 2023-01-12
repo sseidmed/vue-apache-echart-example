@@ -9,6 +9,7 @@ import SplineAreaChart from './components/SplineAreaChart.vue'
     <router-link to="/donut">Donut chart</router-link> |
     <router-link to="/pyramid">Pyramid Chart</router-link> |
     <router-link to="/stream">Stream Graph</router-link> |
+    <!-- This last router will be removed once we have each chart in its own component -->
     <router-link to="/apache">Apache EChart</router-link> |
   </div>
   <router-view/>
