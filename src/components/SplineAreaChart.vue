@@ -37,10 +37,20 @@ const options = ref({
   xAxis: {
     type: 'category',
     boundaryGap: false,
-    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    axisPointer: {
+      show: true,
+      type: 'line'
+    }
   },
   yAxis: {
     type: 'value'
+  },
+  grid: {
+    tooltip: {
+      show: true,
+      trigger: 'axis'
+    }
   }
 })
 
