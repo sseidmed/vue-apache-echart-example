@@ -3,25 +3,32 @@
 </template>
 
 <script setup>
-import { onMounted, defineProps, watch } from 'vue'
+import { onMounted, defineProps, watch, toRefs } from 'vue'
 import * as echarts from 'echarts';
 
 const props = defineProps({
   id: String,
-  option: Object
+  options: Object,
+  series: Array
 })
 
 let chart
 let chartMap
 
-watch(() => props.option, () => {
-  console.log('watched!')
-  // console.log(props.option)
+const { series } = toRefs(props)
+
+function setOptions() {
+  props.options.series = series
+  chartMap.setOption(props.options)
+}
+
+watch(() => props.series, () => {
+  setOptions()
 })
 
 onMounted(() => {
   chart = document.getElementById(props.id)
   chartMap = echarts.init(chart)
-  chartMap.setOption(props.option)
+  setOptions()
 })
 </script>
