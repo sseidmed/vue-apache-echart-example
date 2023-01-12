@@ -1,6 +1,7 @@
 <template>
     <div>
         <chart id="donut" :options="options" :series="series"></chart>
+        <chart id="donut" :options="options" :series="series"></chart>
     </div>
 </template>
 
@@ -9,11 +10,15 @@ import { ref, reactive, watch } from 'vue'
 import Chart from './Chart.vue'
 
 const options = ref({
+    title: {
+        text: 'Remaining Budget',
+        left: 'center'
+    },
     tooltip: {
-        trigger: 'item'
+        trigger: 'item',
     },
     legend: {
-        top: '5%',
+        bottom: '0',
         left: 'center'
     }
 })
@@ -34,6 +39,10 @@ const series = ref([
             fontSize: 15,
             fontWeight: 'bold'
             }
+        },
+        label: {
+            position: 'inner',
+            fontSize: 10
         },
         labelLine: {
             show: false
