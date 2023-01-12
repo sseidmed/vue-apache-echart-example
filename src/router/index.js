@@ -9,12 +9,12 @@ import StreamGraph from '../components/StreamGraph.vue'
 const routes = [
   {
     path: '/',
-    name: 'spline-area-chart',
+    name: 'spline',
     component: SplineAreaChart
   },
   {
     path: '/area',
-    name: 'basic-area-chart',
+    name: 'area',
     component: BasicAreaChart
   },
   {
