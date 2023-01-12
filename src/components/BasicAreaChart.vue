@@ -19,7 +19,9 @@ const series = ref([
   {
     data: series1,
     type: 'line',
-    areaStyle: {},
+    areaStyle: { color: '#6C50D380' },
+    lineStyle: { color: '#6C50D380' },
+    symbol : 'none',
     smooth: true
   }
 ])
@@ -28,6 +30,7 @@ const options = ref({
   xAxis: {
     type: 'time',
     boundaryGap: false,
+    backgroundColor: '#6C50D380',
     axisPointer: {
       show: true,
       type: 'line',
@@ -75,9 +78,7 @@ function updateSpline() {
   series.value = [
     {
       data: series1,
-      type: 'line',
-      areaStyle: {},
-      smooth: true
+      ...series.value
     }
   ]
 }
