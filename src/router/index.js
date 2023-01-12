@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import SplineAreaChart from '../components/SplineAreaChart.vue'
 import BasicAreaChart from '../components/BasicAreaChart.vue'
 import ApacheEChart from '../components/ApacheEChart.vue'
+import DonutChart from '../components/DonutChart.vue'
+import PyramidChart from '../components/PyramidChart.vue'
+import StreamGraph from '../components/StreamGraph.vue'
 
 const routes = [
   {
@@ -10,7 +13,7 @@ const routes = [
     component: SplineAreaChart
   },
   {
-    path: '/basic-area-chart',
+    path: '/area',
     name: 'basic-area-chart',
     component: BasicAreaChart
   },
@@ -18,6 +21,21 @@ const routes = [
     path: '/apache',
     name: 'apacheEchart',
     component: ApacheEChart
+  },
+  {
+    path: '/donut',
+    name: 'donut',
+    component: DonutChart
+  },
+  {
+    path: '/pyramid',
+    name: 'pyramid',
+    component: PyramidChart
+  },
+  {
+    path: '/stream',
+    name: 'stream',
+    component: StreamGraph
   }
 ]
 const router = createRouter({

@@ -1,202 +1,14 @@
 <template>
-  <div id="main1" style="width: 800px;height:400px;"></div>
-  <div id="main2" style="width: 800px;height:400px;"></div>
-  <div id="main3" style="width: 800px;height:400px;"></div>
-  <div id="main4" style="width: 800px;height:400px;"></div>
-  <div id="main5" style="width: 800px;height:400px;"></div>
-  <div id="main6" style="width: 800px;height:400px;"></div>
+    <div>
+        <chart id="donut" :options="options" :series="series"></chart>
+    </div>
 </template>
+
 <script setup>
-import { onMounted, ref } from 'vue'
-import * as echarts from 'echarts'
+import { ref, reactive, watch } from 'vue'
+import Chart from './Chart.vue'
 
-// Create the echarts instance
-
-onMounted(() => {
-  let myChart1 = document.getElementById('main1')
-  let map1 = echarts.init(myChart1)
-  map1.setOption({
-    title: {
-      text: 'ECharts Getting Started Example'
-    },
-    tooltip: {},
-    xAxis: {
-      data: ['shirt', 'cardigan', 'chiffon', 'pants', 'heels', 'socks']
-    },
-    yAxis: {},
-    series: [
-      {
-        name: 'sales',
-        type: 'bar',
-        data: [5, 20, 36, 10, 10, 20]
-      }
-    ]
-  })
-
-  let myChart2 = document.getElementById('main2')
-  let map2 = echarts.init(myChart2)
-  map2.setOption({
-    xAxis: {
-      type: 'category',
-      boundaryGap: false,
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-    },
-    yAxis: {
-      type: 'value'
-    },
-    series: [
-      {
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
-        type: 'line',
-        areaStyle: {},
-        smooth: true
-      }
-    ]
-  })
-
-  let myChart3 = document.getElementById('main3')
-  let map3 = echarts.init(myChart3)
-  map3.setOption({
-    xAxis: {
-      type: 'category',
-      boundaryGap: false,
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-    },
-    yAxis: {
-      type: 'value'
-    },
-    series: [
-      {
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
-        type: 'line',
-        areaStyle: {},
-        smooth: true
-      },
-      {
-        data: [720, 832, 801, 834, 590, 1230, 1220],
-        type: 'line',
-        areaStyle: {},
-        smooth: true
-      },
-      {
-        data: [620, 732, 601, 534, 990, 930, 920],
-        type: 'line',
-        areaStyle: {},
-        smooth: true
-      }
-    ]
-  })
-
-  let myChart4 = document.getElementById('main4')
-  let map4 = echarts.init(myChart4)
-  map4.setOption({
-    tooltip: {
-      trigger: 'item'
-    },
-    legend: {
-      top: '5%',
-      left: 'center'
-    },
-    series: [
-      {
-        name: 'Access From',
-        type: 'pie',
-        radius: ['40%', '70%'],
-        avoidLabelOverlap: false,
-        label: {
-          show: false,
-          position: 'center'
-        },
-        emphasis: {
-          label: {
-            show: true,
-            fontSize: 15,
-            fontWeight: 'bold'
-          }
-        },
-        labelLine: {
-          show: false
-        },
-        data: [
-          { value: 1048, name: 'Search Engine' },
-          { value: 735, name: 'Direct' },
-          { value: 580, name: 'Email' },
-          { value: 484, name: 'Union Ads' },
-          { value: 300, name: 'Video Ads' }
-        ]
-      }
-    ]
-  })
-
-  let myChart5 = document.getElementById('main5')
-  let map5 = echarts.init(myChart5)
-  map5.setOption({
-    title: {
-      text: 'Deals'
-    },
-    tooltip: {
-      trigger: 'item',
-      formatter: '{a} <br/>{b}'
-    },
-    toolbox: {
-      feature: {
-        dataView: { readOnly: false },
-        restore: {},
-        saveAsImage: {}
-      }
-    },
-    legend: {
-      data: ['868', '204', '45', '24']
-    },
-    series: [
-      {
-        name: 'Deals',
-        type: 'funnel',
-        left: '10%',
-        top: 60,
-        bottom: 60,
-        width: '60%',
-        min: 0,
-        max: 100,
-        minSize: '0%',
-        maxSize: '100%',
-        sort: 'descending',
-        gap: 2,
-        label: {
-          show: true,
-          position: 'inside'
-        },
-        labelLine: {
-          length: 10,
-          lineStyle: {
-            width: 1,
-            type: 'solid'
-          }
-        },
-        itemStyle: {
-          borderColor: '#fff',
-          borderWidth: 1
-        },
-        emphasis: {
-          label: {
-            fontSize: 20
-          }
-        },
-        data: [
-  
-          { value: 25, name: '24' },
-          { value: 50, name: '45' },
-          { value: 75, name: '204' },
-          { value: 100, name: '868' }
-        ]
-      }
-    ]
-  })
-
-
-  let myChart6 = document.getElementById('main6')
-  let map6 = echarts.init(myChart6)
-  map6.setOption({
+const options = ref({
     tooltip: {
       trigger: 'axis',
       axisPointer: {
@@ -230,8 +42,13 @@ onMounted(() => {
           opacity: 0.2
         }
       }
-    },
-    series: [
+    }
+}
+
+)
+
+const series = ref(
+    [
       {
         type: 'themeRiver',
         emphasis: {
@@ -370,23 +187,9 @@ onMounted(() => {
         ]
       }
     ]
-  })
-
-
-
-
-  
-})
-
-
-
+)
 </script>
 
-<style scoped>
-.read-the-docs {
-  color: rgb(245, 235, 235);
-}
-.chart {
-  height: 400px;
-}
+<style lang="scss" scoped>
+
 </style>
