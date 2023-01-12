@@ -8,11 +8,10 @@ import SplineAreaChart from './components/SplineAreaChart.vue'
     <router-link to="/area">Basic Area Chart</router-link> |
     <router-link to="/donut">Donut chart</router-link> |
     <router-link to="/pyramid">Pyramid Chart</router-link> |
-    <router-link to="/apache">Stream Graph</router-link> |
+    <router-link to="/stream">Stream Graph</router-link> |
     <router-link to="/apache">Apache EChart</router-link> |
   </div>
   <router-view/>
-  <SplineAreaChart />
 </template>
 
 <style scoped>
