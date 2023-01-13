@@ -20,8 +20,7 @@ const series = ref([
     data: series1,
     type: 'line',
     areaStyle: { color: '#6C50D380' },
-    lineStyle: { color: '#6C50D380' },
-    symbol : 'none',
+    areaStyle: { color: '#6C50D380' },
     smooth: true
   }
 ])
