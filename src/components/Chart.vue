@@ -1,24 +1,18 @@
 <template>
-  <div :id="props.id" style="width: 800px; height:400px;"></div>
+  <div :id="props.id" :width="props.width" :height="props.height"></div>
 </template>
 
 <script setup>
-import { onMounted, watch, toRefs } from 'vue'
+import { onMounted, watch } from 'vue'
 import * as echarts from 'echarts';
 
-const props = defineProps({
-  id: String,
-  options: Object,
-  series: Array
-})
+const props = defineProps(['id', 'options', 'series', 'width', 'height'])
 
 let chart
 let chartMap
 
-const { series } = toRefs(props)
-
 function setOptions() {
-  props.options.series = series
+  props.options.series = props.series
   chartMap.setOption(props.options)
 }
 
@@ -26,9 +20,21 @@ watch(() => props.series, () => {
   setOptions()
 })
 
+watch(() => props.width, () => {
+  console.log(props.width, props.height)
+  chartMap.resize({
+    width: props.width,
+    height: props.height
+  })
+})
+
 onMounted(() => {
-  chart = document.getElementById(props.id)
-  chartMap = echarts.init(chart)
+  console.log(props.id)
+  chart = document.getElementById(props.id,)
+  chartMap = echarts.init(chart, null, {
+    width: props.width,
+    height: props.height
+  })
   setOptions()
 })
 </script>
